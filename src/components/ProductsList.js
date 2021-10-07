@@ -1,5 +1,5 @@
 
-export const products = [
+ const products = [
             {
                 id:1,
                 url:'https://www.tomsguide.fr/content/uploads/sites/2/2020/08/hp-laptop-15-silver-2020-1-1024x847.jpg',
@@ -43,6 +43,6 @@ export const products = [
                 prix:'850dt'
             }
         ]
-
+export default products
     
 

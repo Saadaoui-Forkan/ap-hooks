@@ -1,15 +1,20 @@
 import React, {useState} from 'react'
-import {products} from './ProductsList'
+import products from './ProductsList'
 import AddProduct from './AddProduct'
 import StarRating from './StarRating'
-
 import { v4 as uuidv4 } from 'uuid';
-// import { Alert } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 
 function Products() {
 
-    let [products, setProducts] = useState(products);
-    const addNewProd = (newProd) => {setProducts([...products, 
+    const [items, setProducts] = useState(products);
+
+    const [warning, setWarning] = useState(false);
+    const addNewProd = (newProd) => 
+        { 
+            if (newProd !== ''){
+
+                        setProducts([...items, 
                     {
                             id: uuidv4(),
                             url:newProd.url,
@@ -17,14 +22,22 @@ function Products() {
                             des:newProd.des,
                             prix:newProd.prix
                     }])
+
+            }
+            else {
+                setWarning (true)
+            }
         }
+
+    const warningMsg = warning && <Alert  variant='danger'>Please enter data !!!</Alert>   
 
     return (
         <div>
+            {warningMsg}
             <div className="row">
             
             {    
-                products.map((product)=> (
+                items.map((product)=> (
                     
                     <div key={product.id} className='col-3 productItem'>
                         
@@ -39,10 +52,10 @@ function Products() {
                 ))    
             }
            
-
+         
             </div>
 
-            <AddProduct addNewProd={addNewProd}/>    
+            <AddProduct addNewProd={addNewProd} />   
 
         </div>
     )

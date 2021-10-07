@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
-import {products} from './ProductsList'
 
-function AddProduct({addNewProd,products}) {
+
+function AddProduct({addNewProd }) {
 
     const  [addProd, setAddProd] = useState(
         {
@@ -13,12 +13,17 @@ function AddProduct({addNewProd,products}) {
     );
 
     const handleChange = (e) => {
-        setAddProd(e.target.value)
-        console.log(e.target.value)
+        
+        setAddProd ({
+            ...addProd, [e.target.id] : e.target.value
+        })
     }
 
-    const handleSubmit = () => {
-        console.log('ok')
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        addNewProd(addProd)
+        setAddProd('')
+        console.log(addProd)
     }
 
     return (
@@ -26,6 +31,7 @@ function AddProduct({addNewProd,products}) {
             <form onSubmit={handleSubmit}>
                 <input 
                 type="text" 
+                id='title'
                 value={addProd.title}
                 placeholder="title"
                 onChange={handleChange}
@@ -33,6 +39,7 @@ function AddProduct({addNewProd,products}) {
                 <br/>
                 <input 
                 type="text"
+                id="url"
                 value={addProd.url} 
                 placeholder="url"
                 onChange={handleChange}
@@ -40,6 +47,7 @@ function AddProduct({addNewProd,products}) {
                 <br/>
                 <input
                 type="text"
+                id="des"
                 value={addProd.des}  
                 placeholder="des"
                 onChange={handleChange}
@@ -47,8 +55,9 @@ function AddProduct({addNewProd,products}) {
                 <br/>
                 <input 
                 type="text"
-                value={addProd.price}  
-                placeholder="price"
+                id="prix"
+                value={addProd.prix}  
+                placeholder="prix"
                 onChange={handleChange}
                 />
                 <br/>
