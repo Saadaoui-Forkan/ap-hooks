@@ -23,7 +23,6 @@ function AddProduct({addNewProd }) {
         e.preventDefault()
         addNewProd(addProd)
         setAddProd('')
-        console.log(addProd)
     }
 
     return (

@@ -1,12 +1,12 @@
-import React , {useState} from 'react'
+import React from 'react'
 
-function Search() {
+function Search({setSearchItem}) {
 
-    const [searchData, setSearchData] = useState([])
-    const handleSearch = (data) =>{
-        setSearchData ( data.target.value )
-    }
     
+    const handleSearch = (e) =>{
+        setSearchItem ( e.target.value )
+    }
+
 
     return (
         <div>
@@ -15,7 +15,7 @@ function Search() {
             type='text' 
             placeholder="Search..."
             id='search-bar'
-            value={searchData}
+            
             onChange={handleSearch}
             /> 
         </div>
@@ -23,5 +23,5 @@ function Search() {
     )
 }
 
-export default Search
+export default Search;
 

@@ -1,20 +1,17 @@
 import React, {useState} from 'react'
-import products from './ProductsList'
 import AddProduct from './AddProduct'
 import StarRating from './StarRating'
 import { v4 as uuidv4 } from 'uuid';
 import { Alert } from 'react-bootstrap';
 
-function Products() {
-
-    const [items, setProducts] = useState(products);
-
+function Products({data , setData , searchItem}) {
+ 
     const [warning, setWarning] = useState(false);
     const addNewProd = (newProd) => 
         { 
             if (newProd !== ''){
 
-                        setProducts([...items, 
+                        setData([...data, 
                     {
                             id: uuidv4(),
                             url:newProd.url,
@@ -37,7 +34,13 @@ function Products() {
             <div className="row">
             
             {    
-                items.map((product)=> (
+                data.filter((product)=>{
+                    if (searchItem===""){
+                        return product
+                    } else if (product.title.toLowerCase().includes(searchItem.toLowerCase())){
+                        return product
+                    } 
+                }).map((product)=> (
                     
                     <div key={product.id} className='col-3 productItem'>
                         
