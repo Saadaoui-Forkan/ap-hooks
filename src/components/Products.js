@@ -1,67 +1,40 @@
-import React, {useState} from 'react'
-import AddProduct from './AddProduct'
-import StarRating from './StarRating'
-import { v4 as uuidv4 } from 'uuid';
-import { Alert } from 'react-bootstrap';
+import React, { useState } from "react";
+import AddProduct from "./AddProduct";
+import StarRating from "./StarRating";
+import { Alert } from "react-bootstrap";
 
-function Products({data , setData , searchItem}) {
- 
-    const [warning, setWarning] = useState(false);
-    const addNewProd = (newProd) => 
-        { 
-            if (newProd !== ''){
+function Products({ data, addNewProduct }) {
+  const [warning, setWarning] = useState(false);
 
-                        setData([...data, 
-                    {
-                            id: uuidv4(),
-                            url:newProd.url,
-                            title:newProd.title,
-                            des:newProd.des,
-                            prix:newProd.prix
-                    }])
+  const handleAdd = (product) => {
+    const isValid = product.title && product.url && product.description && product.price;
+    if (!isValid) return setWarning(true);
 
-            }
-            else {
-                setWarning (true)
-            }
-        }
+    setWarning(false);
+    addNewProduct(product);
+  };
 
-    const warningMsg = warning && <Alert  variant='danger'>Please enter data !!!</Alert>   
+  return (
+    <div>
+      {warning && <Alert variant="danger">Please fill all fields.</Alert>}
 
-    return (
-        <div>
-            {warningMsg}
-            <div className="row">
-            
-            {    
-                data.filter((product)=>{
-                    if (searchItem===""){
-                        return product
-                    } else if (product.title.toLowerCase().includes(searchItem.toLowerCase())){
-                        return product
-                    } 
-                }).map((product)=> (
-                    
-                    <div key={product.id} className='col-3 productItem'>
-                        
-                        <h3 style={{textAlign:"center",fontSize:19}}>{product.title}</h3>
-                        <img src={product.url} alt='' width='200px' height='100px'></img>
-                        <p style={{fontSize:15}}>{product.des}</p>
-                        <h4 style={{fontSize:17}}>{product.prix}</h4>
-
-                        <StarRating />
-                        
-                    </div>    
-                ))    
-            }
-           
-         
+      <div className="row">
+        {data.map((product) => (
+          <div key={product.id} className="col-md-3 mb-4">
+            <div className="border p-2 rounded">
+              <h5 className="text-center">{product.title}</h5>
+              <img src={product.url} alt={product.title} className="img-fluid mb-2" />
+              <p>{product.description}</p>
+              <h6>{product.price}</h6>
+              <StarRating rating={product.rating} />
             </div>
+          </div>
+        ))}
+      </div>
 
-            <AddProduct addNewProd={addNewProd} />   
-
-        </div>
-    )
+      <AddProduct onAdd={handleAdd} />
+    </div>
+  );
 }
 
-export default Products
+export default Products;

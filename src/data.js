@@ -1,0 +1,50 @@
+export const products = [
+  {
+    id: 1,
+    url: "https://www.tomsguide.fr/content/uploads/sites/2/2020/08/hp-laptop-15-silver-2020-1-1024x847.jpg",
+    title: "Asus",
+    des: 'Ecran 15.6" FHD - Processeur Intel i7-1065G7',
+    prix: "900dt",
+    rating: 4.1,
+  },
+  {
+    id: 2,
+    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR651sNynvm88wK8xka9EXMdifDsl79UcSksQ&usqp=CAU",
+    title: "Dell",
+    des: 'Ecran 15.6" FHD - Processeur Intel i7-1065G7',
+    prix: "1000dt",
+    rating: 3.75,
+  },
+  {
+    id: 3,
+    url: "https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2020/08/toshiba_t1100.jpg?resize=1200&key=0e09e10d&watermark",
+    title: "Hp",
+    des: 'Ecran 15.6" FHD - Processeur Intel i7-1065G7 ',
+    prix: "800dt",
+    rating: 2.9,
+  },
+  {
+    id: 4,
+    url: "https://m.media-amazon.com/images/I/71kKJC9opRL._AC_SL1500_.jpg",
+    title: "Huawei",
+    des: 'Ecran 15.6" FHD - Processeur Intel i7-1065G7,',
+    prix: "900dt",
+    rating: 3.81,
+  },
+  {
+    id: 5,
+    url: "https://www.notebookcheck.biz/uploads/tx_nbc2/toshiba_satellite_l350_gesamtklein_01.jpg",
+    title: "Toshiba",
+    des: 'Ecran 15.6" FHD - Processeur Intel i7-1065G7,',
+    prix: "700dt",
+    rating: 4.98
+  },
+  {
+    id: 6,
+    url: "https://images-cdn.ubuy.co.id/6351db69b85588185836143d-2021-toshiba-dynabook-tecra-a50-j.jpg",
+    title: "Hp",
+    des: 'Ecran 15.6" FHD - Processeur Intel i7-1065G7,',
+    prix: "850dt",
+    rating: 1.89,
+  },
+];

@@ -1,34 +1,20 @@
-import React , {useState} from 'react'
-import { FaStar } from 'react-icons/fa'
+import React from "react";
+import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
-function StarRating() {
-    const [rating , setRating]   = useState(null);
-    const [hover , setHover]   = useState(null);
-    return (
-        <div className='star'>
-                {[...Array(5)].map((star,i)=>{
-                const ratingValue = i+1; 
-                
-                    return(
-                        <label className="rating"  key={`${star}-${i}`}>
-                            <input type="radio" 
-                            name="rating" 
-                            value={ratingValue}
-                            onClick={()=>{setRating(ratingValue)}}
-                            />
+function StarRating({ rating }) {
+  const stars = [];
 
-                            <FaStar  
-                            className="star"
-                            color={ratingValue <= ( hover || rating ) ? "#ffc107" : "#e4e5e9"} 
-                            size="20px"
-                            onMouseEnter={()=>{setHover(ratingValue)}}
-                            onMouseLeave={()=>{setHover(null)}}
-                            />
-                        </label>
-                    )
-                }) }     
-            </div> 
-    )
+  for (let i = 1; i <= 5; i++) {
+    if (rating >= i) {
+      stars.push(<FaStar key={i} color="#ffc107" />);
+    } else if (rating >= i - 0.5) {
+      stars.push(<FaStarHalfAlt key={i} color="#ffc107" />);
+    } else {
+      stars.push(<FaRegStar key={i} color="#e4e5e9" />);
+    }
+  }
+
+  return <div className="d-flex gap-1">{stars}</div>;
 }
 
-export default StarRating
+export default StarRating;

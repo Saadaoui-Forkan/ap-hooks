@@ -1,72 +1,72 @@
-import React,{useState} from 'react'
+import React, { useState } from "react";
 
+function AddProduct({ onAdd }) {
+  const [form, setForm] = useState({
+    url: "",
+    title: "",
+    description: "",
+    price: "",
+  });
 
-function AddProduct({addNewProd }) {
+  const [warning, setWarning] = useState(false);
 
-    const  [addProd, setAddProd] = useState(
-        {
-            url:'',
-            title:'',
-            des:'',
-            prix:''
-        }
-    );
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
-    const handleChange = (e) => {
-        
-        setAddProd ({
-            ...addProd, [e.target.id] : e.target.value
-        })
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { title, url, description, price } = form;
+
+    if (!title || !url || !description || !price) {
+      setWarning(true);
+      return;
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        addNewProd(addProd)
-        setAddProd('')
-    }
+    setWarning(false);
+    onAdd(form);
+    setForm({ url: "", title: "", description: "", price: "" });
+  };
 
-    return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input 
-                type="text" 
-                id='title'
-                value={addProd.title}
-                placeholder="title"
-                onChange={handleChange}
-                />
-                <br/>
-                <input 
-                type="text"
-                id="url"
-                value={addProd.url} 
-                placeholder="url"
-                onChange={handleChange}
-                />
-                <br/>
-                <input
-                type="text"
-                id="des"
-                value={addProd.des}  
-                placeholder="des"
-                onChange={handleChange}
-                />
-                <br/>
-                <input 
-                type="text"
-                id="prix"
-                value={addProd.prix}  
-                placeholder="prix"
-                onChange={handleChange}
-                />
-                <br/>
+  return (
+    <form onSubmit={handleSubmit} className="mt-4">
+      {warning && (
+        <div className="alert alert-danger">Please fill all fields.</div>
+      )}
 
-                <input type="submit" value='Add'/>
-
-            </form>
-            
-        </div>
-    )
+      <input
+        name="title"
+        value={form.title}
+        onChange={handleChange}
+        placeholder="Title"
+        className="form-control mb-2"
+      />
+      <input
+        name="url"
+        value={form.url}
+        onChange={handleChange}
+        placeholder="Image URL"
+        className="form-control mb-2"
+      />
+      <input
+        name="description"
+        value={form.description}
+        onChange={handleChange}
+        placeholder="Description"
+        className="form-control mb-2"
+      />
+      <input
+        name="price"
+        value={form.price}
+        onChange={handleChange}
+        placeholder="Price"
+        className="form-control mb-2"
+      />
+      <button type="submit" className="btn btn-primary w-100">
+        Add Product
+      </button>
+    </form>
+  );
 }
 
-export default AddProduct
+export default AddProduct;
