@@ -1,27 +1,16 @@
-import React from 'react'
+import React from "react";
 
-function Search({setSearchItem}) {
-
-    
-    const handleSearch = (e) =>{
-        setSearchItem ( e.target.value )
-    }
-
-
-    return (
-        <div>
-            <div>
-            <input 
-            type='text' 
-            placeholder="Search..."
-            id='search-bar'
-            
-            onChange={handleSearch}
-            /> 
-        </div>
-        </div>
-    )
+function Search({ setSearchItem }) {
+  return (
+    <div className="mb-4">
+      <input
+        type="text"
+        placeholder="Search..."
+        onChange={(e) => setSearchItem(e.target.value)}
+        className="form-control"
+      />
+    </div>
+  );
 }
 
 export default Search;
-
